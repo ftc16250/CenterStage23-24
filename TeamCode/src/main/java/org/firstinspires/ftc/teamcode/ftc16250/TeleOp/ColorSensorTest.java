@@ -11,12 +11,12 @@ import org.firstinspires.ftc.teamcode.ftc16250.Hardware.ColorSensorHardwareRight
 public class ColorSensorTest extends OpMode {
     ColorSensorHardwareLeft colorLeft = new ColorSensorHardwareLeft();
     ColorSensorHardwareRight colorRight = new ColorSensorHardwareRight();
-MotorArmHardware motorArm = new MotorArmHardware();
+
     @Override()
     public void init(){
         colorLeft.init(hardwareMap);
         colorRight.init(hardwareMap);
-    motorArm.init(hardwareMap);
+
     }
 
     @Override()
@@ -24,11 +24,11 @@ MotorArmHardware motorArm = new MotorArmHardware();
         telemetry.addData("Amount of Color Left", colorLeft.getAmountRedL());
         telemetry.addData("Amount of Color Right", colorRight.getAmountRedR());
         if (colorLeft.getAmountRedL() > 58){
-            motorArm.setMotorArmSpeed(1);
+
         } else if (colorRight.getAmountRedR() > 88){
-            motorArm.setMotorArmSpeed(-1);
+
         } else {
-            motorArm.setMotorArmSpeed(0);
+
         }
 
     }
