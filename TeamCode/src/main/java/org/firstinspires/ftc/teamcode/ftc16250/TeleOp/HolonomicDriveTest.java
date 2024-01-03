@@ -12,6 +12,8 @@ public class HolonomicDriveTest extends OpMode {
     @Override
     public void init() {
         drive.init(hardwareMap);
+
+
     }
 
     @Override
@@ -25,11 +27,12 @@ public class HolonomicDriveTest extends OpMode {
                     DcMotorSimple.Direction.FORWARD,
                     DcMotorSimple.Direction.FORWARD
             );
-            drive.setMotorPower(-1, 1, -1, 1);
+            drive.setMotorPower(-1, 1, -1, 1);{
             drive.getMotorRotationsFl();
             drive.getMotorRotationsFr();
             drive.getMotorRotationsBr();
             drive.getMotorRotationsBl();
+        }
         }
 
         if (gamepad1.left_stick_y<0) {
