@@ -9,7 +9,11 @@ public class HolonomicDriveHardware {
     public DcMotor frontRight = null;
     public DcMotor backLeft = null;
     public DcMotor backRight = null;
-    private double ticksPerRotation;
+    private double ticksPerRotationFL;
+    private double ticksPerRotationFR;
+    private double ticksPerRotationBL;
+    private double ticksPerRotationBR;
+
 
 
     // get wheel motors from robot hardware config
@@ -18,6 +22,11 @@ public class HolonomicDriveHardware {
         frontRight = hardwareMap.dcMotor.get("frontRightMotor");
         backLeft = hardwareMap.dcMotor.get("backLeftMotor");
         backRight = hardwareMap.dcMotor.get("backRightMotor");
+        ticksPerRotationFL = frontLeft.getMotorType().getTicksPerRev();
+        ticksPerRotationFR = frontLeft.getMotorType().getTicksPerRev();
+        ticksPerRotationBL = frontLeft.getMotorType().getTicksPerRev();
+        ticksPerRotationBR = frontLeft.getMotorType().getTicksPerRev();
+
     }
 
 
@@ -49,15 +58,15 @@ public class HolonomicDriveHardware {
         backRight.setPower(power);
     }
     public double getMotorRotationsFl() {
-        return frontLeft.getCurrentPosition() / ticksPerRotation;
+        return frontLeft.getCurrentPosition() / ticksPerRotationFL;
     }
     public double getMotorRotationsFr() {
-        return frontRight.getCurrentPosition() / ticksPerRotation;
+        return frontRight.getCurrentPosition() / ticksPerRotationFR;
     }
     public double getMotorRotationsBl() {
-        return backLeft.getCurrentPosition() / ticksPerRotation;
+        return backLeft.getCurrentPosition() / ticksPerRotationBL;
     }
     public double getMotorRotationsBr() {
-        return backRight.getCurrentPosition() / ticksPerRotation;
+        return backRight.getCurrentPosition() / ticksPerRotationBR;
     }
 }

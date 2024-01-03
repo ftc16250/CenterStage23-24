@@ -16,10 +16,7 @@ public class HolonomicDriveTest extends OpMode {
 
     @Override
     public void loop() {
-        telemetry.addData("Ticks Per Rotation FrontLeft", drive.getMotorRotationsFl());
-        telemetry.addData("Ticks Per Rotation Front Right", drive.getMotorRotationsFr());
-        telemetry.addData("Ticks Per Rotation Back Left", drive.getMotorRotationsBl());
-        telemetry.addData("Ticks Per Rotation Back Right", drive.getMotorRotationsBr());
+
         // test if game-pads work
         if (gamepad1.left_stick_y>0) {
             drive.setMotorDirection(
@@ -57,5 +54,9 @@ if (gamepad1.right_stick_y>0){
         }
         // don't spin motor if nothing is pressed
         else drive.setMotorPower(0, 0, 0, 0);
+        telemetry.addData("Ticks Per Rotation FrontLeft", drive.getMotorRotationsFl());
+        telemetry.addData("Ticks Per Rotation Front Right", drive.getMotorRotationsFr());
+        telemetry.addData("Ticks Per Rotation Back Left", drive.getMotorRotationsBl());
+        telemetry.addData("Ticks Per Rotation Back Right", drive.getMotorRotationsBr());
     }
 }
