@@ -47,11 +47,11 @@ if (gamepad1.right_stick_y>0){
 
             drive.setMotorPower(-1, -1, 1, 1);
         }
-        if (gamepad1.right_stick_x>0){
+        if (gamepad1.right_bumper){
 
             drive.setMotorPower(-1, -1, -1, -1);
         }
-        if (gamepad1.right_stick_x<0){
+        if (gamepad1.left_bumper){
 
             drive.setMotorPower(1, 1, 1, 1);
         }
