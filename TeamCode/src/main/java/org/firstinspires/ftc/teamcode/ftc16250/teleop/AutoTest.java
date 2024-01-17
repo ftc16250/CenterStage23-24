@@ -3,14 +3,16 @@ package org.firstinspires.ftc.teamcode.ftc16250.teleop;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import org.firstinspires.ftc.teamcode.ftc16250.hardware.HolonomicDriveHardware;
+
+import org.firstinspires.ftc.teamcode.ftc16250.hardware.AutoMovementHardware;
+
 import org.firstinspires.ftc.teamcode.ftc16250.hardware.ColorSensorHardwareLeft;
 import org.firstinspires.ftc.teamcode.ftc16250.hardware.ColorSensorHardwareRight;
 import org.firstinspires.ftc.teamcode.ftc16250.hardware.MotorArmHardware;
 import org.firstinspires.ftc.teamcode.ftc16250.hardware.ManipulatorHardware;
 @Autonomous
 public class AutoTest extends OpMode{
-    HolonomicDriveHardware drive = new HolonomicDriveHardware();
+    AutoMovementHardware drive = new AutoMovementHardware();
     ColorSensorHardwareLeft colorL = new ColorSensorHardwareLeft();
     ColorSensorHardwareRight colorR = new ColorSensorHardwareRight();
     MotorArmHardware arm = new MotorArmHardware();

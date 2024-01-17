@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.ftc16250.teleop;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.ftc16250.hardware.DroneHardware;
 import org.firstinspires.ftc.teamcode.ftc16250.hardware.HolonomicDriveHardware;
 import org.firstinspires.ftc.teamcode.ftc16250.hardware.ManipulatorHardware;
 import org.firstinspires.ftc.teamcode.ftc16250.hardware.MotorArmHardware;
@@ -12,12 +13,14 @@ public class DriverControl extends OpMode {
     HolonomicDriveHardware drive = new HolonomicDriveHardware();
     ManipulatorHardware servo = new ManipulatorHardware();
     MotorArmHardware arm = new MotorArmHardware();
+    DroneHardware dServo = new DroneHardware();
 
     @Override
     public void init(){
         drive.init(hardwareMap);
         servo.init(hardwareMap);
         arm.init(hardwareMap);
+        dServo.init(hardwareMap);
     }
 
     @Override
@@ -30,10 +33,7 @@ public class DriverControl extends OpMode {
                     DcMotorSimple.Direction.FORWARD
             );
             drive.setMotorPower(-1, 1, -1, 1);{
-                drive.getMotorRotationsFl();
-                drive.getMotorRotationsFr();
-                drive.getMotorRotationsBr();
-                drive.getMotorRotationsBl();
+
             }
         }
 
@@ -60,20 +60,24 @@ public class DriverControl extends OpMode {
         if(gamepad2.left_stick_y>0){
             arm.setMotorPower(0.5);
         }
+        if (gamepad2.left_stick_y<0){
+            arm.setMotorPower(-0.5);
+        }
         if (gamepad2.a){
             servo.setPosition(-1);
         }
         if (gamepad2.b){
             servo.setPosition(1);
         }
+        if (gamepad2.x){
+            dServo.setServoPosition(1);
+        }
+
         // don't spin motor if nothing is pressed
         else drive.setMotorPower(0, 0, 0, 0);
         arm.setMotorPower(0);
         servo.setPosition(0);
-        telemetry.addData("Ticks Per Rotation FrontLeft", drive.getMotorRotationsFl());
-        telemetry.addData("Ticks Per Rotation Front Right", drive.getMotorRotationsFr());
-        telemetry.addData("Ticks Per Rotation Back Left", drive.getMotorRotationsBl());
-        telemetry.addData("Ticks Per Rotation Back Right", drive.getMotorRotationsBr());
+
         telemetry.addData("Ticks Per Rotation Arm", arm.getMotorRotationsArm());
     }
     }
