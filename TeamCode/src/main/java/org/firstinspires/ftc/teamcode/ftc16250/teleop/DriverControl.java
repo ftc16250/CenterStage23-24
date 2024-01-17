@@ -77,6 +77,7 @@ public class DriverControl extends OpMode {
         else drive.setMotorPower(0, 0, 0, 0);
         arm.setMotorPower(0);
         servo.setPosition(0);
+        dServo.setServoPosition(0);
 
         telemetry.addData("Ticks Per Rotation Arm", arm.getMotorRotationsArm());
     }
