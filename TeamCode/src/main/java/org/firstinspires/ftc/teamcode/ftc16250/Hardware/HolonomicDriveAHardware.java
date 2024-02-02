@@ -1,18 +1,16 @@
 package org.firstinspires.ftc.teamcode.ftc16250.Hardware;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorController;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-public class HolonomicDriveHardware {
+public class HolonomicDriveAHardware {
     public DcMotor frontLeft = null;
     public DcMotor frontRight = null;
     public DcMotor backLeft = null;
     public DcMotor backRight = null;
-    private double ticksPerRotationFL;
-    private double ticksPerRotationFR;
-    private double ticksPerRotationBL;
-    private double ticksPerRotationBR;
+
 
 
 
@@ -22,13 +20,20 @@ public class HolonomicDriveHardware {
         frontRight = hardwareMap.dcMotor.get("frontRightMotor");
         backLeft = hardwareMap.dcMotor.get("backLeftMotor");
         backRight = hardwareMap.dcMotor.get("backRightMotor");
-        ticksPerRotationFL = frontLeft.getMotorType().getTicksPerRev();
-        ticksPerRotationFR = frontRight.getMotorType().getTicksPerRev();
-        ticksPerRotationBL = backLeft.getMotorType().getTicksPerRev();
-        ticksPerRotationBR = backRight.getMotorType().getTicksPerRev();
+
+        frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        frontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        backLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        backRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontRight.setDirection(DcMotorSimple.Direction.FORWARD);
+        backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        backRight.setDirection(DcMotorSimple.Direction.FORWARD);
 
 
     }
+
+
 
 
     // set the direction of all motors
@@ -58,18 +63,22 @@ public class HolonomicDriveHardware {
         backLeft.setPower(power);
         backRight.setPower(power);
     }
+    public void moveForward(double fLSpeed, double frSpeed, double blSpeed, double brSpeed, long milliseconds){
+        frontLeft.setPower(fLSpeed);
+        frontRight.setPower(frSpeed);
+        backLeft.setPower(blSpeed);
+        backRight.setPower(brSpeed);
 
-    public double getMotorRotationsFl() {
+        try{
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e){
+            Thread.currentThread().interrupt();
+        }
 
-        return frontLeft.getCurrentPosition() / ticksPerRotationFL;
+        frontLeft.setPower(0);
+        frontRight.setPower(0);
+        backLeft.setPower(0);
+        backRight.setPower(0);
     }
-    public double getMotorRotationsFr() {
-        return frontRight.getCurrentPosition() / ticksPerRotationFR;
-    }
-    public double getMotorRotationsBl() {
-        return backLeft.getCurrentPosition() / ticksPerRotationBL;
-    }
-    public double getMotorRotationsBr() {
-        return backRight.getCurrentPosition() / ticksPerRotationBR;
-    }
+
 }
