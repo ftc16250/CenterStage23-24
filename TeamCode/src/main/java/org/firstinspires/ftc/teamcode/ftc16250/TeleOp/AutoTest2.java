@@ -15,12 +15,14 @@ public class AutoTest2 extends LinearOpMode {
     ColorSensorHardwareLeft colorL = new ColorSensorHardwareLeft();
     ColorSensorHardwareRight colorR = new ColorSensorHardwareRight();
 
+    @Override
     public void runOpMode(){
 
         drive.init(hardwareMap);
-
+        colorL.init(hardwareMap);
+        colorR.init(hardwareMap);
        waitForStart();
-            drive.moveForward(0.25,0.25,0.25,0.25,3100);
+            drive.moveForward(0.25,0.25,0.25,0.25,3500);
             if (colorL.getAmountRedL() >= 58){
                 drive.moveForward(0.25,-0.25,0.25,-0.25,3100);
                 drive.moveForward(-0.25,-0.25,-0.25,-0.25,1000);
